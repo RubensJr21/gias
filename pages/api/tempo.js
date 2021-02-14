@@ -1,5 +1,5 @@
 async function tempo(request, response){
-    const cep = request.query.cep || process.env.CEP;
+    const cep = /*request.query.cep ||*/ process.env.CEP;
 
     const dynamicDate = new Date();
 
@@ -15,6 +15,9 @@ async function tempo(request, response){
         console.log(data)
     });*/
     console.log(request.query)
+
+    response.setHeader('Cache-Control', 's-maxage=10, stale-while-revalidate');
+
     response.json({
         date: dynamicDate.toGMTString(),
         cep_result: endereco
