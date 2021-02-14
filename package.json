@@ -1,0 +1,20 @@
+{
+  "name": "gias",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RubensJr21/gias.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RubensJr21/gias/issues"
+  },
+  "homepage": "https://github.com/RubensJr21/gias#readme"
+}
