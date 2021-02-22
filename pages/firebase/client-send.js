@@ -15,7 +15,7 @@ function ClienteSend(){
         console.log(myKey.key)
     }
     const registerValue = async () => {
-        const myKey = await fetch(`/api/firebase?f=registerValueForKey&pf=${key},${value}`).then(data => {
+        const myKey = await fetch(`/api/firebase?f=registerValueForKey&pf=${key},${uri}`).then(data => {
             // console.log("Consulta efetuada!")
             return data.json()
         })
@@ -41,7 +41,7 @@ function ClienteSend(){
             <br/>
             <br/>
             <QRReader getNewValue={setUri}/>
-            <p>{uri}</p>
+            <pre>{uri}</pre>
         </div>
     )
 }
