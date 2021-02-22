@@ -4,6 +4,7 @@ import QRReader from "../../components/QRReader.tsx";
 function ClienteSend(){
     const [key, setKey] = useState("");
     const [value, setValue] = useState("");
+    const [uri, setUri] = useState("")
 
     const getKey = async () => {
         const myKey = await fetch("/api/firebase?f=getNewKey").then(data => {
@@ -39,8 +40,8 @@ function ClienteSend(){
             <br/>
             <br/>
             <br/>
-            <QRReader getNewValue={alert}/>
-            <p></p>
+            <QRReader getNewValue={setUri}/>
+            <p>{uri}</p>
         </div>
     )
 }
