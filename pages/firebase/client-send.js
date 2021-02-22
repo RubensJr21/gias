@@ -19,6 +19,7 @@ function ClienteSend(){
             // console.log("Consulta efetuada!")
             return data.json()
         })
+        alert(myKey)
     }
 
     const updateValue = (event) => {
