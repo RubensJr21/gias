@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "private": false,
   "scripts": {
-    "dev": "next dev"
+    "dev": "next dev -H 0.0.0.0 -p 80",
+    "dev-help": "next dev --help"
   },
   "repository": {
     "type": "git",
@@ -18,8 +20,11 @@
   },
   "homepage": "https://github.com/RubensJr21/gias#readme",
   "dependencies": {
+    "firebase": "^8.2.9",
     "next": "^10.0.6",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-qr-reader": "^2.2.1",
+    "xml2js": "^0.4.23"
   }
 }
