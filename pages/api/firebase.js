@@ -18,7 +18,7 @@ async function registerValueForKey(key, value, db){
     const success = await db.ref().update(updates)
                         .then(() => true)
                         .catch(() => false)
-    return {
+    return success ? {success} : {
         success,
         type_error: "error on insert value"
     };
@@ -95,10 +95,10 @@ async function Main(request, response){
                 newKey,
                 value
             })
-            registerValueForKey(newKey, value, db)
+            const r = await registerValueForKey(newKey, value, db)
             response.send({
                 key: newKey,
-                success: true
+                success: r.success
             })
         } else {
             response.send({
