@@ -15,6 +15,7 @@ class QRReader extends Component {
       this.setState({
         result: data
       })
+      this.props.getNewValue(data)
     }
   }
   handleError = err => {

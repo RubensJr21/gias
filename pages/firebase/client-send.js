@@ -39,7 +39,7 @@ function ClienteSend(){
             <br/>
             <br/>
             <br/>
-            <QRReader/>
+            <QRReader getNewValue={alert}/>
             <p></p>
         </div>
     )
