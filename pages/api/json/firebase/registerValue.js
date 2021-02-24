@@ -1,4 +1,4 @@
-import {firebase, db} from '../firebase'
+import {db} from '../firebase'
 
 async function registerValueForKey(key, value){
     let updates = {};

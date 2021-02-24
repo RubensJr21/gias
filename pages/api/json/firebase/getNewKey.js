@@ -1,4 +1,4 @@
-import {firebase, db} from '../firebase'
+import {db} from '../firebase'
 
 async function Main(request, response){
     const key = db.ref().push().key;
