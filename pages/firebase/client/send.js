@@ -1,4 +1,4 @@
-import { useState, Component } from 'react'
+import { useState } from 'react'
 import QRReader from "../../../components/QRReader.tsx";
 
 function ClienteSend(){
@@ -46,6 +46,7 @@ function ClienteSend(){
             <br/>
             <br/>
             <input
+                disabled
                 type="url"
                 name="resultUrl"
                 id="resultUrl"

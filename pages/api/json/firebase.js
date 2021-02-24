@@ -55,7 +55,6 @@ async function Main(request, response){
 
     if(Object.keys(request.query).length == 0){
         response.send({
-            key,
             mode: "request not used query",
             success: false
         })
