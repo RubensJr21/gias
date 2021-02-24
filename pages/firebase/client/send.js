@@ -41,7 +41,7 @@ function ClienteSend(){
             <br/>
             <br/>
             <br/>
-            <input type="url" name="" id="" src={uri}/>
+            <input type="url" name="" id="" src={uri} value={uri} />
             <QRReader getNewValue={setUri}/>
         </div>
     )
