@@ -44,9 +44,16 @@ function ClienteSend(){
                 Registrar valor
             </button>
             <br/>
+            <input
+                type="url"
+                name="resultUrl"
+                id="resultUrl"
+                value={uri}
+                style={{
+                    width: "100%"
+                }}
+            />
             <br/>
-            <br/>
-            <input type="url" name="resultUrl" id="resultUrl" src={uri} value={uri} />
             <QRReader getNewValue={updateUri}/>
         </div>
     )
