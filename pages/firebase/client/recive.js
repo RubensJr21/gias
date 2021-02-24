@@ -13,7 +13,7 @@ function ClienteRevice(){
 
     const clickButton = async (event) => {
         const getXML = xml
-        const uri = `/api/firebase?f=getValueOfKey&pf=${key}${xml ? "&of=xml" : ""}`
+        const uri = `/api/${xml ? "xml" : "json"}/firebase/getValue?key=${key}`
         const newResult = await fetch(`${uri}`).then(data => {
             console.log(data)
             if(getXML){
@@ -26,7 +26,7 @@ function ClienteRevice(){
                 return mValue
             }
         })
-        setResult(xml ? newResult : JSON.stringify(newResult, undefined, 2))
+        setResult(getXML ? newResult : JSON.stringify(newResult, undefined, 2))
         console.log(newResult)
     }
 
@@ -53,14 +53,11 @@ function ClienteRevice(){
                         cursor: 'pointer'
                     }}
                 />
-                <label 
-                // onClick={() => {
-                //     document.getElementById("checkBoxXML").checked = !document.getElementById("checkBoxXML").checked
-                // }}
-                style={{
-                    cursor: 'pointer'
-                }}
-                for="checkBoxXML"
+                <label
+                    style={{
+                        cursor: 'pointer'
+                    }}
+                    for="checkBoxXML"
                 >resposta em XML (Se desmarcado retorna em JSON)</label>
             </div>
             <h2>Resultado:</h2>

@@ -7,7 +7,7 @@ function ClienteSend(){
     const [uri, setUri] = useState("")
 
     const getKey = async () => {
-        const myKey = await fetch("/api/json/firebase?f=getNewKey").then(data => {
+        const myKey = await fetch("/api/json/firebase/getNewKey").then(data => {
             // console.log("Consulta efetuada!")
             return data.json()
         })
@@ -15,7 +15,7 @@ function ClienteSend(){
         console.log(myKey.key)
     }
     const registerValue = async () => {
-        const myKey = await fetch(`/api/json/firebase?f=registerValueForKey&pf=${key},${uri}`).then(data => {
+        const myKey = await fetch(`/api/json/firebase/registerValue&key=${key}&value=${uri}`).then(data => {
             // console.log("Consulta efetuada!")
             return data.json()
         })
