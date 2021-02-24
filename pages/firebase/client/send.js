@@ -27,6 +27,11 @@ function ClienteSend(){
         console.log(event.target.value)
     }
 
+    const updateUri = (data) => {
+        setUri(data);
+        document.getElementById("resultUrl").value = data;
+    }
+
     return(
         <div>
             <h1>Cliente Send</h1>
@@ -34,15 +39,15 @@ function ClienteSend(){
                 Gerar chave
             </button>
             <h4>Key: {key}</h4>
-            <input onChange={updateValue} type="text" name="url" id="url"/>
+            <input onChange={updateValue} type="text" name="inputUrl" id="inputUrl"/>
             <button id="registerValue" onClick={registerValue}>
                 Registrar valor
             </button>
             <br/>
             <br/>
             <br/>
-            <input type="url" name="" id="" src={uri} value={uri} />
-            <QRReader getNewValue={setUri}/>
+            <input type="url" name="resultUrl" id="resultUrl" src={uri} value={uri} />
+            <QRReader getNewValue={updateUri}/>
         </div>
     )
 }
