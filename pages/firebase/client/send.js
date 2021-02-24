@@ -7,7 +7,7 @@ function ClienteSend(){
     const [uri, setUri] = useState("")
 
     const getKey = async () => {
-        const myKey = await fetch("/api/firebase?f=getNewKey").then(data => {
+        const myKey = await fetch("/api/json/firebase?f=getNewKey").then(data => {
             // console.log("Consulta efetuada!")
             return data.json()
         })
@@ -15,7 +15,7 @@ function ClienteSend(){
         console.log(myKey.key)
     }
     const registerValue = async () => {
-        const myKey = await fetch(`/api/firebase?f=registerValueForKey&pf=${key},${uri}`).then(data => {
+        const myKey = await fetch(`/api/json/firebase?f=registerValueForKey&pf=${key},${uri}`).then(data => {
             // console.log("Consulta efetuada!")
             return data.json()
         })
@@ -44,6 +44,7 @@ function ClienteSend(){
                 Registrar valor
             </button>
             <br/>
+            <br/>
             <input
                 type="url"
                 name="resultUrl"
@@ -53,6 +54,7 @@ function ClienteSend(){
                     width: "100%"
                 }}
             />
+            <br/>
             <br/>
             <QRReader getNewValue={updateUri}/>
         </div>
