@@ -1,7 +1,7 @@
+import {db} from '../firebase' // db permace no escopo global, todos tem acesso
 import xml2js from 'xml2js'
-import {firebase, db} from '../firebase'
 
-async function getValueKey(key, db){
+async function getValueKey(key){
     var result = ""
     await db.ref(`/qrcodes`).on('value', (snapshot) => {
         var data = snapshot.val();
@@ -11,30 +11,42 @@ async function getValueKey(key, db){
     return result;
 }
 
-async function removeKey(db, key){
+async function removeKey(key){
     await db.ref("/qrcodes/" + key).remove()
 }
 
 async function Main(request, response){
-    if(request.query.key != ""){
-         const value = await getValueKey(request.query.key, db)
-         const result = {
-             responseApi: {
-                key: request.query.key,
+    const key = request.query.key;
+    if(!["", undefined].includes(key)){
+        const value = await getValueKey(key)
+        if(value == undefined){
+            response.send((new xml2js.Builder()).buildObject({
+                responseApi: {
+                    key,
+                    erro: "key isn't valid",
+                    success: false,
+                    from: "api/xml/firebase/getValue"
+                }
+            }));
+            return;
+        }
+        const result = {
+            responseApi: {
+                key,
                 value,
                 success: true,
                 from: "api/xml/firebase/getValue"
-             }
-         }
-        removeKey(db, request.query.key)
-        response.send(result)
-     } else {
+            }
+        }
+        removeKey(key)
+        response.send((new xml2js.Builder()).buildObject(result))
+    }else {
         response.send((new xml2js.Builder()).buildObject({
             responseApi: {
-            key: request.query.key,
-            error: "missing parameters",
-            success: false,
-            from: "api/xml/firebase/getValue"
+                key,
+                error: "missing parameters",
+                success: false,
+                from: "api/xml/firebase/getValue"
             }
         }))
      }

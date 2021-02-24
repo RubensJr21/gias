@@ -1,5 +1,5 @@
+import {db} from '../firebase' // db permace no escopo global, todos tem acesso
 import xml2js from 'xml2js'
-import {firebase, db} from '../firebase'
 
 async function Main(request, response){
     const key = db.ref().push().key;

@@ -1,10 +1,11 @@
-import {db} from '../firebase'
+import {db} from '../firebase' // db permace no escopo global, todos tem acesso
 
 async function Main(request, response){
     const key = db.ref().push().key;
     response.send({
         key,
-        success: true
+        success: true,
+        from: "api/json/firebase/getNewKey"
     })
 }
 

@@ -1,6 +1,6 @@
-import {db} from '../firebase'
+import {db} from '../firebase' // db permace no escopo global, todos tem acesso
 
-async function getValueKey(key, db){
+async function getValueKey(key){
     var result = ""
     await db.ref(`/qrcodes`).on('value', (snapshot) => {
         var data = snapshot.val();
@@ -10,25 +10,37 @@ async function getValueKey(key, db){
     return result;
 }
 
-async function removeKey(db, key){
+async function removeKey(key){
     await db.ref("/qrcodes/" + key).remove()
 }
 
 async function Main(request, response){
-   if(request.query.key != ""){
-        const value = await getValueKey(request.query.key, db)
-        const result = {
-            key: request.query.key,
-            value,
-            success: true
+    const key = request.query.key;
+   if(!["", undefined].includes(key)){
+        const value = await getValueKey(key)
+        if(value == undefined){
+            response.send({
+                key,
+                erro: "key isn't valid",
+                success: false,
+                from: "api/json/firebase/getValue"
+            })
+            return;
         }
-        removeKey(db, request.query.key)
+        const result = {
+            key,
+            value,
+            success: true,
+            from: "api/json/firebase/getValue"
+        }
+        removeKey(key)
         response.send(result)
     } else {
         response.send({
-            key: request.query.key,
+            key,
             error: "invalid paramter",
-            success: false
+            success: false,
+            from: "api/json/firebase/getValue"
         })
     }
 }
