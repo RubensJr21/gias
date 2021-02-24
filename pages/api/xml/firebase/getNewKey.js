@@ -1,4 +1,4 @@
-import {db} from '../firebase' // db permace no escopo global, todos tem acesso
+import {db} from '../firebase' // db permace no escopo global do arquivo, todas as funções tem acesso tem acesso
 import xml2js from 'xml2js'
 
 async function Main(request, response){

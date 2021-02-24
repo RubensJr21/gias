@@ -1,4 +1,14 @@
-import {db} from '../firebase' // db permace no escopo global, todos tem acesso
+import {db} from '../firebase' // db permace no escopo global do arquivo, todas as funções tem acesso tem acesso
+
+async function getValueKey(key){
+    var result = ""
+    await db.ref(`/qrcodes`).on('value', (snapshot) => {
+        var data = snapshot.val();
+        // console.log(`> getValueKey => data[key] = ${data[key]}`)
+        result = data[key];
+    });
+    return result;
+}
 
 async function registerValueForKey(key, value){
     let updates = {};
@@ -19,7 +29,7 @@ async function Main(request, response){
         const value = request.query.value;
         if(["", undefined].includes(key)){
             response.send({
-                key: key,
+                key,
                 error: `parameter key is: ${key == "" ? "empty" : undefined}.`,
                 success: false,
                 from: "api/json/firebase/registerValue"
@@ -28,8 +38,17 @@ async function Main(request, response){
         }
         if(["", undefined].includes(value)){
             response.send({
-                key: value,
+                key,
                 error: `parameter value is: ${value == "" ? "empty" : undefined}.`,
+                success: false,
+                from: "api/json/firebase/registerValue"
+            })
+            return;
+        }
+        if(getValueKey(key) != undefined){
+            response.send({
+                key,
+                error: `key is already in use`,
                 success: false,
                 from: "api/json/firebase/registerValue"
             })

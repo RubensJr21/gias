@@ -1,4 +1,4 @@
-import {db} from '../firebase' // db permace no escopo global, todos tem acesso
+import {db} from '../firebase' // db permace no escopo global do arquivo, todas as funções tem acesso tem acesso
 
 async function getValueKey(key){
     var result = ""
@@ -18,6 +18,7 @@ async function Main(request, response){
     const key = request.query.key;
    if(!["", undefined].includes(key)){
         const value = await getValueKey(key)
+        console.log(value);
         if(value == undefined){
             response.send({
                 key,

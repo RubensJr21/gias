@@ -1,4 +1,4 @@
-import {db} from '../firebase' // db permace no escopo global, todos tem acesso
+import {db} from '../firebase' // db permace no escopo global do arquivo, todas as funções tem acesso tem acesso
 import xml2js from 'xml2js'
 
 async function registerValueForKey(key, value){
@@ -15,7 +15,6 @@ async function registerValueForKey(key, value){
 }
 
 async function Main(request, response){
-
     if(Object.keys(request.query).length > 0){
         const key = request.query.key;
         const value = request.query.value;
@@ -37,6 +36,17 @@ async function Main(request, response){
                     error: `parameter value is: ${value == "" ? "empty" : undefined}.`,
                     success: false,
                     from: "api/xml/firebase/registerValue"
+                }
+            }))
+            return;
+        }
+        if(getValueKey(key) != undefined){
+            response.send((new xml2js.Builder()).buildObject({
+                responseApi: {
+                    key,
+                    error: `key is already in use`,
+                    success: false,
+                    from: "api/json/firebase/registerValue"
                 }
             }))
             return;

@@ -1,4 +1,4 @@
-import {db} from '../firebase' // db permace no escopo global, todos tem acesso
+import {db} from '../firebase' // db permace no escopo global do arquivo, todas as funções tem acesso tem acesso
 
 async function Main(request, response){
     const key = db.ref().push().key;
