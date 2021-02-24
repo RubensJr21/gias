@@ -6,7 +6,8 @@
   "private": false,
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 80",
-    "dev-help": "next dev --help"
+    "help": "next --help",
+    "build": "next build && next export"
   },
   "repository": {
     "type": "git",

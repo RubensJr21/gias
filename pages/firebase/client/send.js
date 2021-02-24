@@ -1,5 +1,5 @@
 import { useState, Component } from 'react'
-import QRReader from "../../components/QRReader.tsx";
+import QRReader from "../../../components/QRReader.tsx";
 
 function ClienteSend(){
     const [key, setKey] = useState("");
@@ -41,8 +41,8 @@ function ClienteSend(){
             <br/>
             <br/>
             <br/>
+            <input type="url" name="" id="" src={uri}/>
             <QRReader getNewValue={setUri}/>
-            <pre>{uri}</pre>
         </div>
     )
 }

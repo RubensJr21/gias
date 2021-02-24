@@ -80,6 +80,10 @@ typings/
 
 # Next.js build output
 .next
+out
+
+#Next.js archive configs
+#next.config.js
 
 # Nuxt.js build / generate output
 .nuxt

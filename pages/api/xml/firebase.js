@@ -55,16 +55,16 @@ async function Main(request, response){
     const key = db.ref().push().key
 
     if(Object.keys(request.query).length == 0){
-        response.send({
+        response.send((new xml2js.Builder()).buildObject({responseResquest: {
             key,
             mode: "request not used query",
             success: false
-        })
+        }}))
     } else if(request.query.f == "getNewKey"){
-        response.send({
+        response.send((new xml2js.Builder()).buildObject({responseGetNewKey: {
             key,
             success: true
-        })
+        }}))
     } else if(request.query.f == "getValueOfKey"){
         if(request.query.pf != ""){
             const value = await getValueKey(request.query.pf, db)
@@ -74,17 +74,13 @@ async function Main(request, response){
                 success: true
             }
             removeKey(db, request.query.pf)
-            if(request.query.of == "xml"){
-                response.send((new xml2js.Builder()).buildObject({responseGetValueOfKey: result}))
-            }else{
-                response.send(result)
-            }
+            response.send((new xml2js.Builder()).buildObject({responseGetValueOfKey: result}))
         } else {
-            response.send({
+            response.send((new xml2js.Builder()).buildObject({responseGetValueOfKey: {
                 key: request.query.pf,
                 error: "invalid paramter",
                 success: false
-            })
+            }}))
         }
     } else if(request.query.f == "registerValueForKey"){
         if(request.query.pf != ""){
@@ -96,22 +92,22 @@ async function Main(request, response){
                 value
             })
             const r = await registerValueForKey(newKey, value, db)
-            response.send({
+            response.send((new xml2js.Builder()).buildObject({responseRegisterValueForKey: {
                 key: newKey,
                 success: r.success
-            })
+            }}))
         } else {
-            response.send({
+            response.send((new xml2js.Builder()).buildObject({responseRegisterValueForKey: {
                 key: newKey,
                 error: "invalid paramter",
                 success: false
-            })
+            }}))
         }
     } else {
-        response.send({
+        response.send((new xml2js.Builder()).buildObject({responseResquest: {
             error: "unknown query parameter",
             success: false
-        })
+        }}))
     }
 }
 
