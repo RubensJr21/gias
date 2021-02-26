@@ -33,29 +33,51 @@ function ClienteSend(){
     }
 
     return(
-        <div>
-            <h1>Cliente Send</h1>
-            <button id="gerateKey" onClick={getKey}>
-                Gerar chave
-            </button>
-            <h4>Key: {key}</h4>
-            <input onChange={updateValue} type="text" name="inputUrl" id="inputUrl"/>
-            <button id="registerValue" onClick={registerValue}>
-                Registrar valor
-            </button>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+        }}>
+            <h1 style={{
+            textAlign: 'center'
+            }}>Cliente Send</h1>
+            <div style={{
+                display: 'grid',
+                justifyContent: 'center'
+            }}>
+                <button id="gerateKey" onClick={getKey}>
+                    Gerar chave
+                </button>
+            </div>
+            <h4 style={{
+                textAlign: 'center'
+            }}>Key: {key}</h4>
+            <div style={{
+                display: 'grid',
+                justifyContent: 'center'
+            }}>
+                <input onChange={updateValue} type="text" name="inputUrl" id="inputUrl"/>
+                <br/>
+                <button id="registerValue" onClick={registerValue}>
+                    Registrar valor
+                </button>
+            </div>
             <br/>
-            <br/>
-            <input
-                disabled
-                type="url"
-                name="resultUrl"
-                id="resultUrl"
-                value={uri}
-                style={{
-                    width: "100%"
-                }}
-            />
-            <br/>
+            <div style={{
+                display: 'grid',
+                justifyContent: 'center'
+            }}>
+                <input
+                    disabled
+                    type="url"
+                    name="resultUrl"
+                    id="resultUrl"
+                    value={uri}
+                    style={{
+                        width: "50vw"
+                    }}
+                />
+            </div>
             <br/>
             <QRReader getNewValue={updateUri}/>
         </div>

@@ -34,16 +34,31 @@ function ClienteRevice(){
         setXml(event.target.checked)
         console.log(event.target.checked)
     }
-
     return(
-        <div>
-            <h1>Cliente Recive</h1>
-            <input onChange={changeListenKey} type="text" name="listenKey" id="listenKey"/>
-            <button onClick={clickButton}>Escutar</button>
-            <h4>Key digitada: {key}</h4>
+        <div style={{
+            display: 'grid',
+            flexDirection: 'column',
+            justifyContent: 'center'
+        }}>
+            <h1 style={{
+            textAlign: 'center'
+            }}>Cliente Recive</h1>
             <div style={{
                 display: 'flex',
-                alignItems: 'center'
+                justifyContent: 'center'
+            }}>
+                <input style={{
+                    marginRight: "10px"
+                }} 
+                onChange={changeListenKey} type="text" name="listenKey" id="listenKey"/>
+                <button onClick={clickButton}>Obter valor da chave</button>
+            </div>
+            <h4 style={{
+                textAlign: 'center'
+            }}>Key digitada: {key}</h4>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center'
             }}>
                 <input onChange={changeXML} 
                     type="checkbox"
@@ -60,8 +75,15 @@ function ClienteRevice(){
                     for="checkBoxXML"
                 >resposta em XML (Se desmarcado retorna em JSON)</label>
             </div>
-            <h2>Resultado:</h2>
-            <pre>{result}</pre>
+            <h2 style={{
+                textAlign: 'center'
+            }}>Resultado:</h2>
+            <div style={{
+                display: 'flex',
+                justifyContent: 'center'
+            }}>
+                <pre>{result}</pre>
+            </div>
         </div>
     )
 }

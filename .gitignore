@@ -1,3 +1,7 @@
+#arquivo de configurações pra rodar ssl (https)
+ssl
+https.config.json
+
 # links de ajuda
 .help
 
